@@ -7,13 +7,23 @@ const { basePath } = require("./utils/common");
 const { uploadRouter } = require("./router/upload");
 const { blogRouter } = require("./router/blog");
 const { connectDB } = require("./db/connect");
+const allowCrossDomain = require("./middlewares/allow-cors");
+const notFound = require("./middlewares/not-found");
+const errorHandlerMiddleware = require("./middlewares/error-handler");
+const authMiddleware = require("./middlewares/authentication");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.use(express.json());
+app.use(allowCrossDomain);
+
 app.use(basePath + "/auth", authRouter);
-app.use(basePath + "/media", uploadRouter);
-app.use(basePath + "/blog", blogRouter);
+app.use(basePath + "/media", authMiddleware, uploadRouter);
+app.use(basePath + "/blog", authMiddleware, blogRouter);
+
+app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 async function start() {
   try {
