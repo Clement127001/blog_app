@@ -1,25 +1,32 @@
 require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
+const multer = require("multer");
 
 const authRouter = require("./router/auth");
-const { basePath } = require("./utils/common");
 const { uploadRouter } = require("./router/upload");
 const { blogRouter } = require("./router/blog");
+
+const { basePath } = require("./utils/common");
 const { connectDB } = require("./db/connect");
+const { storage } = require("./utils/blog");
+
 const allowCrossDomain = require("./middlewares/allow-cors");
 const notFound = require("./middlewares/not-found");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
 const authMiddleware = require("./middlewares/authentication");
 
+const upload = multer({ storage });
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(allowCrossDomain);
 
 app.use(basePath + "/auth", authRouter);
-app.use(basePath + "/media", authMiddleware, uploadRouter);
+app.use(basePath + "/media", upload.single("file"), uploadRouter);
 app.use(basePath + "/blog", authMiddleware, blogRouter);
 
 app.use(notFound);

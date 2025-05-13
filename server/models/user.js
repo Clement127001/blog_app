@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { emailRegex } = require("../utils/common");
 
 const userSchema = new mongoose.Schema(
   {
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "Password should have 6 characters at least"],
     },
   },
-  { timestamps: { createdAt } }
+  { timestamps: { createdAt: true } }
 );
 
 userSchema.pre("save", async function () {

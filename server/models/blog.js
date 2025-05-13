@@ -28,7 +28,7 @@ const blogSchema = new mongoose.Schema(
     },
     author: { type: mongoose.Types.ObjectId, ref: "User" },
   },
-  { timestamps: { createdAt, updatedAt } }
+  { timestamps }
 );
 
 module.exports = mongoose.model("Blog", blogSchema);
