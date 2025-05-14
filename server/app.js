@@ -18,6 +18,7 @@ const authMiddleware = require("./middlewares/authentication");
 
 const app = express();
 const upload = multer({ storage });
+
 const PORT = process.env.PORT || 8080;
 
 app.use(express.json());

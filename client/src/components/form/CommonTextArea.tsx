@@ -1,7 +1,7 @@
-import { Controller, FieldValues } from "react-hook-form";
+import { Controller, type FieldValues } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { CommonInputProps } from "@/types/form";
+import type { CommonInputProps } from "@/types/form";
 
 export function CommonTextArea<T extends FieldValues>({
   label,
