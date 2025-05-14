@@ -11,7 +11,7 @@ import {
   loginPages,
   loginRestrictedPages,
   validateToken,
-} from "src/utils/common";
+} from "@/utils/common";
 
 interface LoginContextInterface {
   isLoggedIn: boolean;

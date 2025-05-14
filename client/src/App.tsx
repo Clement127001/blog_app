@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "src/pages/Root";
-import ErrorPage from "src/pages/Error";
-import BlogRootPage from "./pages/BlogRoot";
+import RootLayout from "@/pages/Root";
+import ErrorPage from "@/pages/Error";
+import BlogRootPage from "@/pages/BlogRoot";
+import { Button } from "@/components/ui/button";
+import LoginPage from "@/pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -12,11 +14,16 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div className="text-app-primary-800">home sweet home</div>,
+        element: (
+          <div className="text-app-primary-800">
+            home sweet home
+            <Button>hi</Button>
+          </div>
+        ),
       },
       {
         path: "login",
-        element: <div>login</div>,
+        element: <LoginPage />,
       },
       {
         path: "register",

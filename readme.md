@@ -31,3 +31,24 @@ npm i
 ```
 npm run dev
 ```
+
+## Frontend
+
+### Tech Stack
+
+- React
+- Next Js
+- Tailwind CSS
+- Shadcn UI for components
+
+- start dev server:
+
+```
+npm run dev
+```
+
+- Note! : Change the baseApiUrl in client/src/utils/common
+
+```
+export const baseApiUrl = "http://localhost:3000/api";
+```
