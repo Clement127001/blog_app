@@ -31,7 +31,7 @@ app.use(
   upload.single("file"),
   uploadRouter
 );
-app.use(basePath + "/blog", authMiddleware, blogRouter);
+app.use(basePath + "/blogs", authMiddleware, blogRouter);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);

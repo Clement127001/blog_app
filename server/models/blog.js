@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { BlogCategory } = require("../utils/common");
+const { BlogCategory } = require("../utils/blog");
 
 const blogSchema = new mongoose.Schema(
   {
@@ -18,8 +18,8 @@ const blogSchema = new mongoose.Schema(
     content: {
       type: String,
       required: [true, "Blog Content is required"],
-      minlength: [40, "Blog content must be at least 40 characters"],
-      maxlength: [2500, "Blog content must be at most 2500 characters"],
+      minlength: [40, "Blog content should have 40 characters at least"],
+      maxlength: [2500, "Blog content should have 2500 characters at most"],
     },
     imageUrl: {
       type: String,

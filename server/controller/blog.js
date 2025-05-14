@@ -1,7 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
+const { BadRequestError } = require("../errors");
 const Blog = require("../models/blog");
 const User = require("../models/User");
-const { BadRequestError } = require("../errors");
 
 const getAllBlogs = async (req, res) => {
   const { author, category, pageNumber, pageSize } = req.query;
