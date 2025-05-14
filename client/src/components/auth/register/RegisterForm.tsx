@@ -1,26 +1,25 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
-import { UserRegister } from "@/types/register";
 import { baseApiUrl, emailRegex } from "@/utils/common";
 import { toast } from "sonner";
 import { defaultCreateUserValue } from "@/utils/register";
 import { CommonInput } from "@/components/form/CommonInput";
 import { Button } from "@/components/ui/button";
+import type { UserRegister } from "@/types/register";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const registerForm = useForm<UserRegister>({
     mode: "onSubmit",
     defaultValues: defaultCreateUserValue,
   });
-
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const { handleSubmit } = registerForm;
 
   const onCreate: SubmitHandler<UserRegister> = async (data) => {
     try {
-      const response = await fetch(baseApiUrl + "/auth/register", {
+      const response = await fetch(baseApiUrl + "/auth/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -38,7 +37,7 @@ const RegisterForm = () => {
             onClick: () => {},
           },
         });
-        router.push("/email");
+        navigate("/blogs");
       } else {
         const err = await response.json();
         toast.error("Error", {

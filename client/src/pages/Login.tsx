@@ -52,7 +52,7 @@ const LoginPage = () => {
   return (
     <>
       <section className="flex justify-center items-center h-screen">
-        <div className="bg-white min-w-[400px] rounded-md p-4 px-6 shadow-lg border-[1px] space-y-8">
+        <div className="bg-white min-w-[400px] rounded-md py-8 px-10 shadow-lg border-[1px] space-y-8">
           <h2 className="text-center text-3xl font-bold">Login</h2>
           <LoginForm />
 

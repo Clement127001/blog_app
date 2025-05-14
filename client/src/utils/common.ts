@@ -1,7 +1,7 @@
 import { Mail, Workflow } from "lucide-react";
 import Cookies from "js-cookie";
 
-export const baseApiUrl = "http://localhost:3000";
+export const baseApiUrl = "http://localhost:3000/api";
 
 export const loginPages = ["/login", "/register"];
 export const loginRestrictedPages = ["/blogs", "/blogs/create", "/blogs/edit"];

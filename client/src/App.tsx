@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "@/pages/Root";
 import ErrorPage from "@/pages/Error";
 import BlogRootPage from "@/pages/BlogRoot";
-import { Button } from "@/components/ui/button";
 import LoginPage from "@/pages/Login";
+import RegisterPage from "@/pages/Register";
+import { Button } from "@/components/ui/button";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <div>register</div>,
+        element: <RegisterPage />,
       },
       {
         path: "blogs",

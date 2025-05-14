@@ -43,7 +43,7 @@ const LoginForm = () => {
           },
         });
 
-        navigate("/email");
+        navigate("/blogs");
       } else {
         const err = await response.json();
         toast.error("Error", {
