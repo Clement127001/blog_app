@@ -6,16 +6,14 @@ const blogSchema = new mongoose.Schema(
     title: {
       type: String,
       required: [true, "Title is required"],
-      minlength: [4, "Name should have 4 characters at least"],
-      maxlength: [100, "Name should have 100 characters at most"],
+      minlength: [4, "Title should have 4 characters at least"],
+      maxlength: [100, "Title should have 100 characters at most"],
       trim: true,
     },
     category: {
-      type: {
-        type: String,
-        enum: Object.values(BlogCategory),
-        required: [true, "Category is required"],
-      },
+      type: String,
+      enum: Object.values(BlogCategory),
+      required: [true, "Category is required"],
     },
     content: {
       type: String,
@@ -28,7 +26,7 @@ const blogSchema = new mongoose.Schema(
     },
     author: { type: mongoose.Types.ObjectId, ref: "User" },
   },
-  { timestamps }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Blog", blogSchema);

@@ -7,20 +7,20 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "please provide name"],
+      required: [true, "Name is required"],
       minlength: [3, "Name should have 3 characters at least"],
       maxlength: [30, "Name should have 30 characters at most"],
       trim: true,
     },
     email: {
       type: String,
-      required: [true, "please provide email"],
+      required: [true, "Email is required"],
       match: [emailRegex],
       unique: true,
     },
     password: {
       type: String,
-      required: [true, "please provide password"],
+      required: [true, "Password is required"],
       minlength: [6, "Password should have 6 characters at least"],
     },
   },
@@ -43,7 +43,7 @@ userSchema.methods.createJWT = function () {
 };
 
 userSchema.methods.comparePassword = async function (userPassword) {
-  const isPasswordMatched = await bcrypt.compare(userPassword, this.password);
+  const isPasswordMatched = bcrypt.compare(userPassword, this.password);
   return isPasswordMatched;
 };
 

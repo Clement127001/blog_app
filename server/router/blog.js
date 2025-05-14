@@ -5,7 +5,6 @@ const {
   updateBlog,
   deleteBlog,
 } = require("../controller/blog");
-
 const blogRouter = require("express").Router();
 
 blogRouter.get("/", getAllBlogs);
