@@ -1,5 +1,7 @@
+import CreateBlog from "@/components/blog/CreateBlog";
+
 const CreateBlogPage = () => {
-  return <div>create blog</div>;
+  return <CreateBlog />;
 };
 
 export default CreateBlogPage;

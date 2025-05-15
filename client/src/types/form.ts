@@ -19,4 +19,7 @@ export interface CommonInputProps<T extends FieldValues> {
   labelClassName?: string;
   showError?: boolean;
   readOnly?: boolean;
+  options?: { value: string; label: string }[];
 }
+
+export type UploadMediaResponseType = { imageUrl: string };

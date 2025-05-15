@@ -17,21 +17,22 @@ const errorHandlerMiddleware = require("./middlewares/error-handler");
 const authMiddleware = require("./middlewares/authentication");
 
 const app = express();
-const upload = multer({ storage });
+const upload = multer({ storage }, { limits: { fileSize: 5 * 1024 * 1024 } });
 
 const PORT = process.env.PORT || 8080;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(allowCrossDomain);
-
-app.use(basePath + "/auth", authRouter);
 app.use(
   basePath + "/media",
   authMiddleware,
   upload.single("file"),
   uploadRouter
 );
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(basePath + "/auth", authRouter);
 app.use(basePath + "/blogs", authMiddleware, blogRouter);
 
 app.use(notFound);
