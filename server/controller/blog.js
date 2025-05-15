@@ -39,8 +39,8 @@ const getAllBlogs = async (req, res) => {
   });
 };
 
-const checkBlogAvailability = async (blogId) => {
-  const blog = await Blog.findById(blogId);
+const checkBlogAvailability = async (blogId, userId) => {
+  const blog = await Blog.findOne({ _id: blogId, author: userId });
 
   if (!blog) {
     throw new BadRequestError("Blog not found");
@@ -49,6 +49,7 @@ const checkBlogAvailability = async (blogId) => {
 
 const getSingleBlog = async (req, res) => {
   const blogId = req.params.blogId;
+  const { userId } = req.user;
 
   const blog = await Blog.findOne({ _id: blogId }).populate(
     "author",
@@ -59,7 +60,9 @@ const getSingleBlog = async (req, res) => {
     return new BadRequestError("Blog not found");
   }
 
-  res.status(StatusCodes.OK).json({ blog });
+  res.status(StatusCodes.OK).json({
+    blog: { ...blog._doc, canMutate: blog.author.id === userId },
+  });
 };
 
 const createBlog = async (req, res) => {
@@ -77,7 +80,8 @@ const createBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   const blogId = req.params.blogId;
 
-  await checkBlogAvailability(blogId);
+  const { userId } = req.user;
+  await checkBlogAvailability(blogId, userId);
 
   await Blog.findOneAndUpdate({ _id: blogId }, { ...req.body });
 
@@ -87,7 +91,8 @@ const updateBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
   const blogId = req.params.blogId;
 
-  await checkBlogAvailability(blogId);
+  const { userId } = req.user;
+  await checkBlogAvailability(blogId, userId);
 
   await Blog.findOneAndDelete({ _id: blogId });
 

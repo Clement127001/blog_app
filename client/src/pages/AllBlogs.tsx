@@ -1,9 +1,8 @@
-import BlogFilter from "@/components/blog/allblogs/BlogsFilter";
-import BlogsList from "@/components/blog/allblogs/BlogsList";
-
+import { useState } from "react";
+import BlogFilter from "@/components/blog/allBlogs/BlogsFilter";
+import BlogsList from "@/components/blog/allBlogs/BlogsList";
 import type { BlogFilterType } from "@/types/blog";
 import { BlogCategoryOptions } from "@/utils/blog";
-import { useState } from "react";
 
 const AllBlogsPage = () => {
   const [filterQuery, setFilterQuery] = useState<BlogFilterType>({

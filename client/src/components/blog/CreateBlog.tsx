@@ -73,7 +73,7 @@ const CreateBlog = () => {
   };
 
   return (
-    <div className="py-6 space-y-4">
+    <div className="py-10 space-y-4 max-w-[60%] mx-auto">
       <BackButton />
       <BlogForm blogForm={blogForm} onSubmit={handleSubmit(onCreateBlog)} />
     </div>

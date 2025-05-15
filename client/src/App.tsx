@@ -7,6 +7,7 @@ import RegisterPage from "@/pages/Register";
 import CreateBlogPage from "@/pages/CreateBlog";
 import { Button } from "@/components/ui/button";
 import AllBlogsPage from "@/pages/AllBlogs";
+import BlogDetailsPage from "@/pages/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -43,11 +44,7 @@ const router = createBrowserRouter([
           },
           {
             path: ":blogId",
-            element: <div>blog details page</div>,
-          },
-          {
-            path: "edit/:blogId",
-            element: <div>edit blog</div>,
+            element: <BlogDetailsPage />,
           },
         ],
       },

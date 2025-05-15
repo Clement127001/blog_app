@@ -1,7 +1,7 @@
 import Pagination from "@/components/Pagination";
 import { useBlogsList } from "@/hooks/useBlogsList";
 import type { BlogFilterType } from "@/types/blog";
-import BlogListSkeleton from "./BlogListSkeleton";
+import BlogListSkeleton from "@/components/blog/allBlogs/BlogListSkeleton";
 import UserAvatar from "@/components/UserAvatar";
 import { Link } from "react-router-dom";
 
@@ -33,12 +33,11 @@ const BlogsList = ({
   return (
     <div className="py-8 space-y-8 w-[60%]">
       {blogList.blogs.map((blog) => {
-        const { _id, imageUrl, title, author, category, content, createdAt } =
-          blog;
+        const { _id, imageUrl, title, author, content } = blog;
 
         return (
           <Link
-            to={"/blogs" + _id}
+            to={"/blogs/" + _id}
             key={_id}
             className="min-h-30 flex gap-10 hover:bg-gray-100 p-3 rounded-md"
           >
@@ -53,6 +52,7 @@ const BlogsList = ({
               {imageUrl ? (
                 <img
                   src={imageUrl}
+                  alt={title}
                   className="w-full h-full object-cover rounded-sm"
                 />
               ) : null}

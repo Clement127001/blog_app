@@ -11,7 +11,7 @@ export type BlogFilterType = {
   pageNumber: number;
 };
 
-export type Blogs = {
+export type BlogsType = {
   _id: string;
   title: string;
   category: string;
@@ -21,12 +21,13 @@ export type Blogs = {
     _id: string;
     name: string;
   };
+  canMutate?: string;
   createdAt: Date;
   updatedAt: Date;
 };
 
 export type BlogData = {
-  blogs: Blogs[];
+  blogs: BlogsType[];
   currentPageNumber: number;
   totalPages: number;
 };
