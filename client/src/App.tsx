@@ -6,6 +6,7 @@ import LoginPage from "@/pages/Login";
 import RegisterPage from "@/pages/Register";
 import CreateBlogPage from "@/pages/CreateBlog";
 import { Button } from "@/components/ui/button";
+import AllBlogsPage from "@/pages/AllBlogs";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         path: "blogs",
         element: <BlogRootPage />,
         children: [
-          { index: true, element: <div>all blogs page</div> },
+          { index: true, element: <AllBlogsPage /> },
           {
             path: "create",
             element: <CreateBlogPage />,

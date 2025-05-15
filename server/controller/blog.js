@@ -13,18 +13,30 @@ const getAllBlogs = async (req, res) => {
 
   const blogQuery = category ? { category } : {};
 
-  const blogs = await Blog.find(blogQuery)
-    .populate({
-      path: "author",
-      match: { name: { $regex: author, $options: "i" } },
-      select: "_id name",
-    })
-    .skip(skip)
-    .limit(convertedPageSize);
+  const matchingAuthors = await User.find({
+    name: { $regex: author, $options: "i" },
+  }).select("_id");
 
-  const filteredBlogs = blogs.filter((blog) => blog.author);
+  const authorIds = matchingAuthors.map((a) => a._id);
 
-  res.status(StatusCodes.OK).json({ blogs: filteredBlogs });
+  const finalQuery = {
+    ...blogQuery,
+    author: { $in: authorIds },
+  };
+
+  const [totalItems, blogs] = await Promise.all([
+    Blog.countDocuments(finalQuery),
+    Blog.find(finalQuery)
+      .populate("author", "_id name")
+      .skip(skip)
+      .limit(convertedPageSize),
+  ]);
+
+  res.status(StatusCodes.OK).json({
+    blogs,
+    currentPageNumber: convertedPageNumber,
+    totalPages: Math.ceil(totalItems / convertedPageSize),
+  });
 };
 
 const checkBlogAvailability = async (blogId) => {

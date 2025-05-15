@@ -71,7 +71,7 @@ const BlogForm = ({
             inputClassName="rounded-md"
           />
 
-          <Button type="submit" className="w-full group mt-20">
+          <Button type="submit" className="w-full group mt-4">
             <Plus
               strokeWidth={3}
               className="group-hover:scale-125 transition-transform duration-200 ease-in-out"

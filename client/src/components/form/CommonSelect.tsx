@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Controller, type FieldValues } from "react-hook-form";
 import {
   Select,
@@ -18,6 +17,7 @@ export function CommonSelect<T extends FieldValues>({
   hForm,
   placeholder,
   registerOptions,
+  inputClassName = "",
   wrapperClassName = "",
   options,
 }: CommonInputProps<T>) {
@@ -47,29 +47,32 @@ export function CommonSelect<T extends FieldValues>({
           control={control}
           name={name}
           rules={registerOptions}
-          render={({ field }) => (
-            <Select
-              value={field.value}
-              onValueChange={(value) => field.onChange(value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={placeholder} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel className="capitalize">{label}</SelectLabel>
-                  {options &&
-                    options.map((option) => (
-                      <Fragment key={option.value}>
-                        <SelectItem value={option.value}>
+          render={({ field }) => {
+            return (
+              <Select
+                value={field.value}
+                onValueChange={(value) => field.onChange(value)}
+              >
+                <SelectTrigger className={inputClassName}>
+                  <SelectValue placeholder={placeholder} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel className="capitalize">{label}</SelectLabel>
+                    {options &&
+                      options.map((option) => (
+                        <SelectItem
+                          key={option.value}
+                          value={String(option.value)}
+                        >
                           {option.label}
                         </SelectItem>
-                      </Fragment>
-                    ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          )}
+                      ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            );
+          }}
         />
       </div>
       {errors[name] && (

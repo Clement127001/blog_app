@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { baseApiUrl } from "@/utils/common";
 import { toast } from "sonner";
+import BackButton from "@/components/BackButton";
 
 const CreateBlog = () => {
   const blogForm = useForm<BlogFormType>({
@@ -71,7 +72,12 @@ const CreateBlog = () => {
     }
   };
 
-  return <BlogForm blogForm={blogForm} onSubmit={handleSubmit(onCreateBlog)} />;
+  return (
+    <div className="py-6 space-y-4">
+      <BackButton />
+      <BlogForm blogForm={blogForm} onSubmit={handleSubmit(onCreateBlog)} />
+    </div>
+  );
 };
 
 export default CreateBlog;
