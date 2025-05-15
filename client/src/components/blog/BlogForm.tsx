@@ -18,7 +18,7 @@ const BlogForm = ({
   isEdit?: boolean;
 }) => {
   return (
-    <div>
+    <div className="w-full">
       <FormProvider {...blogForm}>
         <form onSubmit={onSubmit} className="py-3 pb-6 px-1 space-y-4">
           <CommonInput

@@ -51,7 +51,7 @@ const CreateBlog = () => {
       } else {
         const err = await response.json();
         toast.error("Error", {
-          description: err.msg,
+          description: err.msg ?? "Failed to edit blog",
           action: {
             label: "close",
             onClick: () => {},
@@ -60,7 +60,7 @@ const CreateBlog = () => {
       }
     } catch (_) {
       toast.error("Error", {
-        description: "Failed to create email template",
+        description: "Failed to create blog",
         duration: 2000,
         action: {
           label: "close",

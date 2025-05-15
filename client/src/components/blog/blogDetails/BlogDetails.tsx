@@ -14,17 +14,21 @@ const DeleteBlogConfirmationModal = lazy(
   () => import("@/components/ConfirmationModal")
 );
 
+const EditBlogModal = lazy(
+  () => import("@/components/blog/blogDetails/EditBlogModal")
+);
+
 const BlogDetails = ({ blogId }: { blogId: string }) => {
   const { isLoading, error, fetchBlogData, blogData } = useBlogDetails(blogId);
   const [deleteConfirmationModalOpened, setDeleteConfirmationModalOpened] =
     useState<boolean>(false);
-  const [editConfirmationModalOpened, setEditConfirmationModalOpened] =
-    useState<boolean>(false);
+  const [editModalOpened, setEditModalOpened] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const { showPageLoader, hidePageLoader } = usePageLoader();
 
   if (error) return <div>error</div>;
+
   if (isLoading) return <BlogDetailsSkeleton />;
 
   if (!blogData)
@@ -97,13 +101,20 @@ const BlogDetails = ({ blogId }: { blogId: string }) => {
     }
   };
 
+  const handleOpenEditModal = () => {
+    setEditModalOpened(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setEditModalOpened(false);
+  };
+
   return (
     <>
       <section className="w-[60%] space-y-6">
         <div className="flex justify-between space-y-3">
           <div className="flex gap-2 items-center">
             <UserAvatar name={author.name} />
-
             <div>
               <p className="text-lg capitalize">{title}</p>
               <p className="text-gray-500"> Created At : {transformedData}</p>
@@ -112,7 +123,7 @@ const BlogDetails = ({ blogId }: { blogId: string }) => {
 
           {canMutate && (
             <div className="space-x-2">
-              <Button>
+              <Button onClick={handleOpenEditModal}>
                 <Edit /> Edit
               </Button>
               <Button
@@ -151,6 +162,15 @@ const BlogDetails = ({ blogId }: { blogId: string }) => {
           description="Are you sure you want to delete this blog? You cannot revert this action"
           confirmText="Yes, Delete"
           onClickConfirm={handleDeleteBlog}
+        />
+      )}
+
+      {canMutate && editModalOpened && (
+        <EditBlogModal
+          onClose={handleCloseEditModal}
+          opened={editModalOpened}
+          blogData={blogData}
+          fetchBlogData={fetchBlogData}
         />
       )}
     </>
