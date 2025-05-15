@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { baseApiUrl, emailRegex } from "@/utils/common";
 import { defaultCreateUserValue } from "@/utils/register";
 import type { UserRegister } from "@/types/register";
+import { usePageLoader } from "@/contexts/pageLoaderProvider";
 
 const RegisterForm = () => {
   const registerForm = useForm<UserRegister>({
@@ -14,10 +15,12 @@ const RegisterForm = () => {
     defaultValues: defaultCreateUserValue,
   });
   const navigate = useNavigate();
+  const { showPageLoader, hidePageLoader } = usePageLoader();
 
   const { handleSubmit } = registerForm;
 
   const onCreate: SubmitHandler<UserRegister> = async (data) => {
+    showPageLoader("Creating profile");
     try {
       const response = await fetch(baseApiUrl + "/auth/sign-up", {
         method: "POST",
@@ -58,6 +61,8 @@ const RegisterForm = () => {
           onClick: () => {},
         },
       });
+    } finally {
+      hidePageLoader();
     }
   };
 

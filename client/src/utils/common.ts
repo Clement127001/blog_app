@@ -1,6 +1,8 @@
 import Cookies from "js-cookie";
 
-export const baseApiUrl = "http://localhost:3000/api";
+// for local development
+// export const baseApiUrl = "http://localhost:3000/api";
+export const baseApiUrl = "https://blog-app-log5.onrender.com/api";
 
 export const loginPages = ["/login", "/register"];
 export const loginRestrictedPages = ["/blogs", "/blogs/create", "/blogs/edit"];
