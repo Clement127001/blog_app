@@ -1,4 +1,3 @@
-import { Mail, Workflow } from "lucide-react";
 import Cookies from "js-cookie";
 
 export const baseApiUrl = "http://localhost:3000/api";
@@ -9,19 +8,6 @@ export const loginRestrictedPages = ["/blogs", "/blogs/create", "/blogs/edit"];
 export const validateToken = (token: string | undefined) => {
   return token !== undefined && token.length !== 0;
 };
-
-export const sidebarLinks = [
-  {
-    redirectLink: "/email",
-    Icon: Mail,
-    label: "all emails",
-  },
-  {
-    redirectLink: "/workflow",
-    Icon: Workflow,
-    label: "all workflows",
-  },
-];
 
 export const logout = () => {
   Cookies.remove("userToken");

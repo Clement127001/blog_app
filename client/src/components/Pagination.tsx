@@ -70,7 +70,7 @@ const Pagination = ({
               className={`w-10 h-10 rounded-md ${
                 isActive
                   ? "bg-app-primary-700 text-white"
-                  : "bg-app-gray-100 hover:bg-app-gray-300/50 text-black"
+                  : "bg-gray-100 hover:bg-gray-300/50 text-black"
               }`}
             >
               {page}

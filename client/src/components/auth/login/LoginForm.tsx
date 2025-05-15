@@ -1,12 +1,12 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
 import { CommonInput } from "@/components/form/CommonInput";
 import { Button } from "@/components/ui/button";
-import { baseApiUrl, emailRegex } from "@/utils/common";
-import { useNavigate } from "react-router-dom";
-import type { UserLogin } from "@/types/login";
 import { usePageLoader } from "@/contexts/pageLoaderProvider";
+import type { UserLogin } from "@/types/login";
+import { baseApiUrl, emailRegex } from "@/utils/common";
 
 const LoginForm = () => {
   const { showPageLoader, hidePageLoader } = usePageLoader();

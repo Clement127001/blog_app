@@ -1,12 +1,12 @@
-import type { BlogFormType } from "@/types/blog";
-import { FormProvider, type UseFormReturn } from "react-hook-form";
-import { CommonInput } from "../form/CommonInput";
-import { CommonSelect } from "../form/CommonSelect";
-import { BlogCategoryOptions } from "@/utils/blog";
-import ImageUpload from "../form/ImageUpload";
-import { CommonTextArea } from "../form/CommonTextArea";
-import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
+import { FormProvider, type UseFormReturn } from "react-hook-form";
+import { CommonInput } from "@/components/form/CommonInput";
+import { CommonSelect } from "@/components/form/CommonSelect";
+import ImageUpload from "@/components/form/ImageUpload";
+import { CommonTextArea } from "@/components/form/CommonTextArea";
+import { Button } from "@/components/ui/button";
+import { BlogCategoryOptions } from "@/utils/blog";
+import type { BlogFormType } from "@/types/blog";
 
 const BlogForm = ({
   blogForm,

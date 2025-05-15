@@ -1,8 +1,5 @@
-import { usePageLoader } from "@/contexts/pageLoaderProvider";
-import type { BlogFormType, BlogsType } from "@/types/blog";
-import { baseApiUrl } from "@/utils/common";
-import Cookies from "js-cookie";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import Cookies from "js-cookie";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -13,6 +10,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import BlogForm from "@/components/blog/BlogForm";
+import { usePageLoader } from "@/contexts/pageLoaderProvider";
+import type { BlogFormType, BlogsType } from "@/types/blog";
+import { baseApiUrl } from "@/utils/common";
 
 const EditBlogModal = ({
   blogData,

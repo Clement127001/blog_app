@@ -26,7 +26,7 @@ export const useBlogDetails = (id: string) => {
       setError(null);
     } else {
       const data = await response.json();
-      setError(data.error.message);
+      setError(data.error.msg);
       setIsLoading(false);
     }
   };

@@ -1,12 +1,12 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { baseApiUrl, emailRegex } from "@/utils/common";
 import { toast } from "sonner";
-import { defaultCreateUserValue } from "@/utils/register";
 import { CommonInput } from "@/components/form/CommonInput";
 import { Button } from "@/components/ui/button";
+import { baseApiUrl, emailRegex } from "@/utils/common";
+import { defaultCreateUserValue } from "@/utils/register";
 import type { UserRegister } from "@/types/register";
-import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const registerForm = useForm<UserRegister>({

@@ -11,6 +11,8 @@ export type BlogFilterType = {
   pageNumber: number;
 };
 
+export type BlogFilterFormType = Omit<BlogFilterType, "pageNumber">;
+
 export type BlogsType = {
   _id: string;
   title: string;

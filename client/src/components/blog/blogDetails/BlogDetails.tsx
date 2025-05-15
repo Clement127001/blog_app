@@ -9,6 +9,7 @@ import { usePageLoader } from "@/contexts/pageLoaderProvider";
 import { baseApiUrl } from "@/utils/common";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
+import ErrorMessage from "@/components/ErrorMessage";
 
 const DeleteBlogConfirmationModal = lazy(
   () => import("@/components/ConfirmationModal")
@@ -27,7 +28,7 @@ const BlogDetails = ({ blogId }: { blogId: string }) => {
   const navigate = useNavigate();
   const { showPageLoader, hidePageLoader } = usePageLoader();
 
-  if (error) return <div>error</div>;
+  if (error) return <ErrorMessage error={error} redirectLink="/" />;
 
   if (isLoading) return <BlogDetailsSkeleton />;
 

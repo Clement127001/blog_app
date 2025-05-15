@@ -1,13 +1,13 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import BlogForm from "./BlogForm";
-import type { BlogFormType } from "@/types/blog";
-import { BlogCategoryOptions } from "@/utils/blog";
-import { usePageLoader } from "@/contexts/pageLoaderProvider";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { baseApiUrl } from "@/utils/common";
 import { toast } from "sonner";
+import BlogForm from "@/components/blog/BlogForm";
 import BackButton from "@/components/BackButton";
+import { usePageLoader } from "@/contexts/pageLoaderProvider";
+import { BlogCategoryOptions } from "@/utils/blog";
+import { baseApiUrl } from "@/utils/common";
+import type { BlogFormType } from "@/types/blog";
 
 const CreateBlog = () => {
   const blogForm = useForm<BlogFormType>({
@@ -51,7 +51,7 @@ const CreateBlog = () => {
       } else {
         const err = await response.json();
         toast.error("Error", {
-          description: err.msg ?? "Failed to edit blog",
+          description: err.msg ?? "Failed to create blog",
           action: {
             label: "close",
             onClick: () => {},

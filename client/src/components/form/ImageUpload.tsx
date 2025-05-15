@@ -32,7 +32,7 @@ const ImageUpload = ({
       if (typeof uploadResponse === "string") {
         setValue(name, uploadResponse);
         toast.success("Media Uploaded", {
-          description: "Image Uploaded successfullly",
+          description: "Image Uploaded successfully",
           duration: 2000,
           action: {
             label: "close",
@@ -44,7 +44,7 @@ const ImageUpload = ({
         });
       } else {
         toast.error("Failed to upload", {
-          description: "Please upload the proper file with size less than 5mb",
+          description: "Please upload the proper file",
           duration: 2000,
           action: {
             label: "close",
@@ -83,7 +83,7 @@ const ImageUpload = ({
       )}
 
       <div
-        className={`relative flex justify-center items-center rounded-md border-2  border-dashed max-w-full h-[240px] cursor-pointer overflow-hidden p-2 bg-app-admin-primary-700/10 border-app-admin-primary-700/50`}
+        className={`relative flex justify-center items-center rounded-md border-2  border-dashed max-w-full h-[240px] cursor-pointer overflow-hidden p-2 bg-app-primary-700/10 border-app-primary-700/50`}
       >
         {previewUrl ? (
           <>
@@ -97,7 +97,7 @@ const ImageUpload = ({
         ) : (
           <>
             <div
-              className={`w-full h-full flex flex-col justify-center items-center gap-2 text-app-admin-primary-700`}
+              className={`w-full h-full flex flex-col justify-center items-center gap-2 text-app-primary-700`}
               onClick={handleUploadImage}
             >
               <UploadCloud size={40} />

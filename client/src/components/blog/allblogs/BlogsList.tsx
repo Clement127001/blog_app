@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import Pagination from "@/components/Pagination";
-import { useBlogsList } from "@/hooks/useBlogsList";
-import type { BlogFilterType } from "@/types/blog";
 import BlogListSkeleton from "@/components/blog/allBlogs/BlogListSkeleton";
 import UserAvatar from "@/components/UserAvatar";
-import { Link } from "react-router-dom";
+import ErrorMessage from "@/components/ErrorMessage";
+import { useBlogsList } from "@/hooks/useBlogsList";
+import type { BlogFilterType } from "@/types/blog";
 
 const BlogsList = ({
   filterQuery,
@@ -14,12 +15,8 @@ const BlogsList = ({
 }) => {
   const { isLoading, error, blogList } = useBlogsList(filterQuery);
 
-  if (error) return <div>error</div>;
+  if (error) return <ErrorMessage error={error} redirectLink="/" />;
   if (isLoading) return <BlogListSkeleton />;
-
-  const handleChangePageNumber = (val: number) => {
-    setFilterQuery({ ...filterQuery, pageNumber: val });
-  };
 
   if (!blogList || blogList.blogs.length === 0)
     return (
@@ -29,6 +26,10 @@ const BlogsList = ({
         </p>
       </div>
     );
+
+  const handleChangePageNumber = (val: number) => {
+    setFilterQuery({ ...filterQuery, pageNumber: val });
+  };
 
   return (
     <div className="py-8 space-y-8 w-[60%]">

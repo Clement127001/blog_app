@@ -1,6 +1,6 @@
-import BlogDetails from "@/components/blog/blogDetails/BlogDetails";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import BlogDetails from "@/components/blog/blogDetails/BlogDetails";
 
 const BlogDetailsPage = () => {
   const navigate = useNavigate();

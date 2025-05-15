@@ -5,9 +5,9 @@ import BlogRootPage from "@/pages/BlogRoot";
 import LoginPage from "@/pages/Login";
 import RegisterPage from "@/pages/Register";
 import CreateBlogPage from "@/pages/CreateBlog";
-import { Button } from "@/components/ui/button";
 import AllBlogsPage from "@/pages/AllBlogs";
 import BlogDetailsPage from "@/pages/BlogDetails";
+import HomePage from "@/pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <div className="text-app-primary-800">
-            home sweet home
-            <Button>hi</Button>
-          </div>
-        ),
+        element: <HomePage />,
       },
       {
         path: "login",

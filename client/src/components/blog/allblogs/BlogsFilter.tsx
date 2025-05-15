@@ -1,11 +1,9 @@
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { CommonInput } from "@/components/form/CommonInput";
 import { CommonSelect } from "@/components/form/CommonSelect";
 import { Button } from "@/components/ui/button";
-import type { BlogFilterType } from "@/types/blog";
 import { BlogCategoryOptions } from "@/utils/blog";
-import { useForm, type SubmitHandler } from "react-hook-form";
-
-type BlogFilterFormType = Omit<BlogFilterType, "pageNumber">;
+import type { BlogFilterFormType, BlogFilterType } from "@/types/blog";
 
 const BlogFilter = ({
   filterQuery,

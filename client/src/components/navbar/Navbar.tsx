@@ -1,10 +1,9 @@
-import { UseLogin } from "@/contexts/LoginProvider";
-import NavLinkButton from "@/components/navbar/NavLinkButton";
-import { Fragment } from "react/jsx-runtime";
-import { Button } from "@/components/ui/button";
+import { Fragment, lazy, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { lazy, useState } from "react";
 import { LogOut } from "lucide-react";
+import NavLinkButton from "@/components/navbar/NavLinkButton";
+import { Button } from "@/components/ui/button";
+import { UseLogin } from "@/contexts/LoginProvider";
 import { loggedUserNavItems, publicNavItems } from "@/utils/navigation";
 import { logout } from "@/utils/common";
 
@@ -17,8 +16,6 @@ const Navbar = () => {
     useState<boolean>(false);
   const { isLoggedIn } = UseLogin();
   const navigate = useNavigate();
-
-  const navItems = isLoggedIn ? loggedUserNavItems : publicNavItems;
 
   const handleOpenLogoutConfirmationModal = () => {
     setLogoutConfirmationModalOpened(true);
@@ -33,6 +30,8 @@ const Navbar = () => {
     navigate("/login?ua=" + false);
     logout();
   };
+
+  const navItems = isLoggedIn ? loggedUserNavItems : publicNavItems;
 
   return (
     <>
